@@ -9,7 +9,7 @@ class Knight(models.Model):
     last_name = models.TextField(null=False)
     date_birth = models.IntegerField(null=True)
     date_death = models.IntegerField(null=True)
-    comments = models.TextField()
+    comments = models.TextField(null=True)
 
 
 class Song(models.Model):
@@ -25,4 +25,4 @@ class News(models.Model):
     text = models.TextField(null=False)
     date = models.DateField(null=False)
     author_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
-    picture = models.ImageField()
+    picture = models.ImageField(null=True)
