@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 
 
-class Knight(models.Model):
+class OldKnight(models.Model):
     name = models.TextField(null=True)
     last_name = models.TextField(null=False)
     date_birth = models.IntegerField(null=True)
@@ -18,6 +18,7 @@ class Song(models.Model):
     author = models.TextField(null=True)
     date = models.TextField(null=True)
     comments = models.TextField(null=True)
+    hidden = models.BooleanField(null=False, default=True)
 
 
 class News(models.Model):
@@ -26,3 +27,4 @@ class News(models.Model):
     date = models.DateField(null=False)
     author_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     picture = models.ImageField(null=True)
+    hidden = models.BooleanField(null=False, default=True)
