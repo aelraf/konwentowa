@@ -25,7 +25,9 @@ def list_of_old(request):
     czytamy z bazy listę zmarłych Kujawitów, wyświetlamy ich w tabeli po x,
     zalogowany użytkownik ma możliwość edytowania wpisów
     """
-    return render(request, 'stronaK/zmarli.html')
+
+    context = {}
+    return render(request, 'stronaK/zmarli.html', context)
 
 
 def story_of_us(request):
