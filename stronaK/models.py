@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+# RafKac
+
 from django.db import models
 
-# Create your models here.
+
+class Barwiarz(models.Model):
+
+
+class Piosenka(models.Model):
