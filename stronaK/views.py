@@ -2,12 +2,18 @@
 # RafKac
 
 from django.shortcuts import render
+from django.http import Http404
 # from django.http import HttpResponse
+from stronaK.models import News
 
 
 def index(request):
-
-    return render(request, 'stronaK/index.html')
+    try:
+        last_news = News.objects.order_by('date')
+    except News.DoesNotExist:
+        raise Http404("News nie istnieje")
+    context = {'last_news': last_news}
+    return render(request, 'stronaK/index.html', context)
 
 
 def list_of_song(request):
