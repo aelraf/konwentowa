@@ -16,7 +16,11 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Zwraca najnowsze aktualności"""
-        return News.objects.order_by('date')
+        last_news = get_list_or_404(News)
+
+        context = {'last_news': last_news}
+
+        return context
 
 
 class ListOfSongView(generic.ListView):
