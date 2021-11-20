@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # RafKac
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import Http404
 # from django.http import HttpResponse
 from stronaK.models import News
@@ -11,7 +11,7 @@ def index(request):
     """
     główna strona - menu + aktualności + lista przycisków z lewej strony, przewijana wraz ze stroną
     """
-    last_news = get_object_or_404(News)
+    last_news = get_list_or_404(News)
 
     context = {'last_news': last_news}
     return render(request, 'stronaK/index.html', context)
