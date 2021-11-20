@@ -12,6 +12,7 @@ from stronaK.models import News, Song, OldKnight
 class IndexView(generic.ListView):
     template_name = 'stronaK/index.html'
     context_object_name = 'last_news'
+    model = News
 
     def get_queryset(self):
         """Zwraca najnowsze aktualności"""
@@ -31,6 +32,7 @@ def index(request):
 class ListOfSongView(generic.ListView):
     template_name = "stronaK/spiewnik.html"
     context_object_name = 'list_of_song'
+    model = Song
 
     def get_queryset(self):
         """Zwraca wszystkie piosenki"""
@@ -50,10 +52,11 @@ def list_of_song(request):
 class ListOfOldView(generic.ListView):
     template_name = 'stronaK/zmarli.html'
     context_object_name = 'list_of_old'
+    model = OldKnight
 
     def get_queryset(self):
         """ Zwraca listę znanych starych Filistrów """
-        return OldKnight.objects.order_by("surname")
+        return OldKnight.objects.order_by("last_name")
 
 
 def list_of_old(request):

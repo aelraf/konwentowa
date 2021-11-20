@@ -11,6 +11,12 @@ class OldKnight(models.Model):
     date_death = models.IntegerField(null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
 
+    class Meta:
+        ordering = ['last_name']
+
+    def __str__(self):
+        return str(self.name) + " " + str(self.last_name)
+
 
 class Song(models.Model):
     title = models.TextField(null=False)
@@ -20,6 +26,12 @@ class Song(models.Model):
     comments = models.TextField(null=True, blank=True)
     hidden = models.BooleanField(null=False, default=True)
 
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
 
 class News(models.Model):
     title = models.TextField(null=False)
@@ -28,3 +40,9 @@ class News(models.Model):
     author_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     picture = models.ImageField(null=True, blank=True)
     hidden = models.BooleanField(null=False, default=True)
+
+    class Meta:
+        ordering = ['date']
+
+    def __str__(self):
+        return str(self.title) + " " + str(self.date) + " " + str(self.author_id)
