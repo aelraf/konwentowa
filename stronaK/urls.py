@@ -5,9 +5,9 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('historiaKorporacji', views.index, name='historiaKorporacji'),
-    path('spiewnik', views.index, name='spiewnik'),
-    path('historiaKujawji', views.index, name='historiaKujawji'),
-    path('zmarli', views.index, name='zmarli'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('historiaKorporacji', views.StoryOfCorporationsView.as_view(), name='historiaKorporacji'),
+    path('spiewnik', views.ListOfSongView.as_view(), name='spiewnik'),
+    path('historiaKujawji', views.StoryOfUsView.as_view(), name='historiaKujawji'),
+    path('zmarli', views.ListOfOldView.as_view(), name='zmarli'),
 ]
