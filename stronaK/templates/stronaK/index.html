@@ -73,12 +73,22 @@
       </ul>
       <hr class="d-sm-none">
     </div>
+
     <div class="col-sm-8">
       <h2>w tym miejscu będziemy generować 10 ostatnich aktualności z bazy - tytuł</h2>
       <h6>Autor, data </h6>
       <div class="fakeimg">Opcjonalnie obraz</div>
       <p>Treść aktualności - rekord z bazy..</p>
       <br>
+      {% if last_news %}
+          {% for news in last_news %}
+              {{ news.title }}
+              {{ news.date }}
+              {{ news.text }}
+          {% endfor %}
+      {% else %}
+          <p>Nie ma aktualności!</p>
+      {% endif %}
     </div>
   </div>
 </div>
