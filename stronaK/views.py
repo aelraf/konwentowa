@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 # RafKac
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 # from django.http import HttpResponse
 from stronaK.models import News
 
 
 def index(request):
-    try:
-        last_news = News.objects.order_by('date')
-    except News.DoesNotExist:
-        raise Http404("News nie istnieje")
+    """
+    główna strona - menu + aktualności + lista przycisków z lewej strony, przewijana wraz ze stroną
+    """
+    last_news = get_object_or_404(News)
+
     context = {'last_news': last_news}
     return render(request, 'stronaK/index.html', context)
 
