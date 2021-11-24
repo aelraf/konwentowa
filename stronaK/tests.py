@@ -13,7 +13,7 @@ def create_news():
         date=timezone.now(),
         title="News dnia",
         text="Dolor amor sit omnia ",
-        author_id="Macias",
+        author_id='admin',
         comments="w pośpiechu stworzony",
         hidden=False,
         picture=None
@@ -44,24 +44,34 @@ def create_song():
 class NewsModelTests(TestCase):
     def test_index_get_queryset(self):
         create_news()
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('stronaK:index'))
+        print(response.status_code)
+        print("test_index_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "News dnia")
 
     def test_index(self):
-        response = self.client.get(reverse('index'))
+        create_news()
+        response = self.client.get(reverse('stronaK:index'))
+        print(response.status_code)
+        print("test_index: {}".format(response))
         self.assertEqual(response.status_code, 200)
 
 
 class OldKnightModelTests(TestCase):
     def test_zmarli_get_queryset(self):
         create_old_knight()
-        response = self.client.get(reverse('stronaK:zmarli'))
+        response = self.client.get('stronaK:zmarli')
+        print(response.status_code)
+        print("test_zmarli_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Jakub")
 
     def test_zmarli(self):
-        response = self.client.get(reverse('stronaK:zmarli.html'))
+        create_old_knight()
+        response = self.client.get('stronaK:zmarli')
+        print(response.status_code)
+        print("test_zmarli: {}".format(response))
         self.assertEqual(response.status_code, 200)
 
 
@@ -69,9 +79,14 @@ class SongModelTests(TestCase):
     def test_spiewnik_get_queryset(self):
         create_song()
         response = self.client.get(reverse('stronaK:spiewnik'))
+        print(response.status_code)
+        print("test_spiewnik_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "kadrowa")
 
     def test_spiewnik(self):
-        response = self.client.get(reverse('stronaK:spiewnik.html'))
+        create_song()
+        response = self.client.get(reverse('stronaK:spiewnik'))
+        print(response.status_code)
+        print("test_spiewnik: {}".format(response))
         self.assertEqual(response.status_code, 200)
