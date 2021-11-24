@@ -42,27 +42,36 @@ def create_song():
 
 
 class NewsModelTests(TestCase):
-    def test_get_queryset(self):
-        print()
+    def test_index_get_queryset(self):
+        create_news()
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "News dnia")
 
     def test_index(self):
-        response = self.client.get(reverse('stronaK:index'))
+        response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
 
 
 class OldKnightModelTests(TestCase):
-    def test_get_queryset(self):
-        print()
+    def test_zmarli_get_queryset(self):
+        create_old_knight()
+        response = self.client.get(reverse('stronaK:zmarli'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Jakub")
 
-    def test_(self):
+    def test_zmarli(self):
         response = self.client.get(reverse('stronaK:zmarli.html'))
         self.assertEqual(response.status_code, 200)
 
 
 class SongModelTests(TestCase):
-    def test_get_queryset(self):
-        print()
+    def test_spiewnik_get_queryset(self):
+        create_song()
+        response = self.client.get(reverse('stronaK:spiewnik'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "kadrowa")
 
-    def test_(self):
+    def test_spiewnik(self):
         response = self.client.get(reverse('stronaK:spiewnik.html'))
         self.assertEqual(response.status_code, 200)
