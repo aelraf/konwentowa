@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <title>Bootstrap 4 Website Example</title>
   <meta charset="utf-8">
@@ -92,6 +92,7 @@
       <form>
           {% csrf_token %}
           {% if last_news %}
+              <p>Aktualności: </p>
               {% for news in last_news %}
                   <li>
                       <h4>{{ news.title }}</h4>

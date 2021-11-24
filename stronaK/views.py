@@ -19,6 +19,7 @@ class IndexView(generic.ListView):
         last_news = get_list_or_404(News)
 
         context = {'last_news': last_news}
+        print(context)
 
         return context
 
