@@ -2,6 +2,7 @@
 # RafKac
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 
 class OldKnight(models.Model):
@@ -36,13 +37,13 @@ class Song(models.Model):
 class News(models.Model):
     title = models.TextField(null=False)
     text = models.TextField(null=False)
-    date = models.DateField(null=False)
+    date = models.DateField(null=False, default=timezone.now())
     author_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     picture = models.ImageField(null=True, blank=True)
     hidden = models.BooleanField(null=False, default=True)
 
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']
 
     def __str__(self):
         return str(self.title) + " " + str(self.date) + " " + str(self.author_id)

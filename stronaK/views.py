@@ -16,12 +16,8 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Zwraca najnowsze aktualności"""
-        last_news = get_list_or_404(News)
 
-        context = {'last_news': last_news}
-        print(context)
-
-        return context
+        return get_list_or_404(News)
 
 
 class ListOfSongView(generic.ListView):
@@ -31,7 +27,7 @@ class ListOfSongView(generic.ListView):
 
     def get_queryset(self):
         """Zwraca wszystkie piosenki"""
-        return Song.objects.order_by('title')
+        return get_list_or_404(Song)
 
 
 class ListOfOldView(generic.ListView):
@@ -41,7 +37,7 @@ class ListOfOldView(generic.ListView):
 
     def get_queryset(self):
         """ Zwraca listę znanych starych Filistrów """
-        return OldKnight.objects.order_by("last_name")
+        return get_list_or_404(OldKnight)
 
 
 class StoryOfUsView(generic.DetailView):

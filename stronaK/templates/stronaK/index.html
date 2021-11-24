@@ -94,12 +94,13 @@
           {% if last_news %}
               <p>Aktualności: </p>
               {% for news in last_news %}
-                  <li>
-                      <h4>{{ news.title }}</h4>
-                      <h6>{{ news.date }}</h6>
-                      <h5>{{ news.text }}</h5>
-                  </li>
-
+                  {% if news.hidden == False %}
+                      <li>
+                          <h4>{{ news.title }}</h4>
+                          <h6>{{ news.date }}</h6>
+                          <h5>{{ news.text }}</h5>
+                      </li>
+                  {% endif %}
               {% endfor %}
           {% else %}
               <p>Nie ma aktualności!</p>
@@ -111,9 +112,9 @@
 
 <div class="jumbotron text-center" style="margin-bottom:0">
   <p>Copyrigth by Konwent Kujawja! 2021</p>
-  <p>Link do pejsbuka</p>
-  <p>adres korespondencyjny</p>
-  <p>adres maila</p>
+  <p>Link do pejsbuka: https://pl-pl.facebook.com/kujawja</p>
+  <p>adres korespondencyjny: Mikołaja Kopernika 47, 87-100 Toruń</p>
+  <p>adres maila: konwentKujawja@gmail.com</p>
   <p>Welecja to lamusy!!! A Arkonia to nie korporacja!!! A Giedyminia to banda pedałów!!!</p>
 </div>
 
