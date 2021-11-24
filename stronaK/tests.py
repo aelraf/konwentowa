@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # RafKac
-
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -13,8 +13,7 @@ def create_news():
         date=timezone.now(),
         title="News dnia",
         text="Dolor amor sit omnia ",
-        author_id='admin',
-        comments="w pośpiechu stworzony",
+        author_id=User.objects.create(id=1, username="Macias"),
         hidden=False,
         picture=None
     )
@@ -45,32 +44,34 @@ class NewsModelTests(TestCase):
     def test_index_get_queryset(self):
         create_news()
         response = self.client.get(reverse('stronaK:index'))
-        print(response.status_code)
         print("test_index_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "News dnia")
+        last_news = News.objects.all()
+        self.assertQuerysetEqual(response.context['last_news'], last_news)
 
     def test_index(self):
         create_news()
         response = self.client.get(reverse('stronaK:index'))
-        print(response.status_code)
         print("test_index: {}".format(response))
         self.assertEqual(response.status_code, 200)
+
+    def test_index_no_book(self):
+        response = self.client.get(reverse('stronaK:index'))
+        self.assertEqual(response.status_code, 404)
 
 
 class OldKnightModelTests(TestCase):
     def test_zmarli_get_queryset(self):
         create_old_knight()
-        response = self.client.get('stronaK:zmarli')
-        print(response.status_code)
+        response = self.client.get(reverse('stronaK:zmarli'))
         print("test_zmarli_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Jakub")
+        list_of_old = OldKnight.objects.all()
+        self.assertQuerysetEqual(response.context['list_of_old'], list_of_old)
 
     def test_zmarli(self):
         create_old_knight()
-        response = self.client.get('stronaK:zmarli')
-        print(response.status_code)
+        response = self.client.get(reverse('stronaK:zmarli'))
         print("test_zmarli: {}".format(response))
         self.assertEqual(response.status_code, 200)
 
@@ -79,14 +80,13 @@ class SongModelTests(TestCase):
     def test_spiewnik_get_queryset(self):
         create_song()
         response = self.client.get(reverse('stronaK:spiewnik'))
-        print(response.status_code)
         print("test_spiewnik_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "kadrowa")
+        list_of_song = Song.objects.all()
+        self.assertQuerysetEqual(response.context['list_of_song'], list_of_song)
 
     def test_spiewnik(self):
         create_song()
         response = self.client.get(reverse('stronaK:spiewnik'))
-        print(response.status_code)
         print("test_spiewnik: {}".format(response))
         self.assertEqual(response.status_code, 200)

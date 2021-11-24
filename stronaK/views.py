@@ -31,7 +31,7 @@ class ListOfSongView(generic.ListView):
 
 
 class ListOfOldView(generic.ListView):
-    template_name = 'stronaK/zmarli.html'
+    template_name = "stronaK/zmarli.html"
     context_object_name = 'list_of_old'
     model = OldKnight
 
@@ -41,7 +41,7 @@ class ListOfOldView(generic.ListView):
 
 
 class StoryOfUsView(generic.DetailView):
-    template_name = 'stronaK/historiaKujawji.html'
+    template_name = "stronaK/historiaKujawji.html"
 
 
 class StoryOfCorporationsView(generic.DetailView):
