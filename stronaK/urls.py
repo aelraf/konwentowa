@@ -10,4 +10,6 @@ urlpatterns = [
     path('spiewnik', views.ListOfSongView.as_view(), name='spiewnik'),
     path('historiaKujawji', views.StoryOfUsView.as_view(), name='historiaKujawji'),
     path('zmarli', views.ListOfOldView.as_view(), name='zmarli'),
+    path('zwyczajeKujawickie', views.OurTraditionView.as_view(), name="zwyczajeKujawickie"),
+    path('galeria', views.PhotoView.as_view(), name="galeria"),
 ]

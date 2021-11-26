@@ -48,4 +48,9 @@ class StoryOfCorporationsView(generic.DetailView):
     template_name = 'stronaK/historiaKorporacji.html'
 
 
+class PhotoView(generic.DetailView):
+    template_name = "stronaK/galeria.html"
 
+
+class OurTraditionView(generic.DetailView):
+    template_name = "stronaK/zwyczajeKujawickie.html"
