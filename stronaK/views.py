@@ -40,17 +40,28 @@ class ListOfOldView(generic.ListView):
         return get_list_or_404(OldKnight)
 
 
-class StoryOfUsView(generic.DetailView):
-    template_name = "stronaK/historiaKujawji.html"
+# class StoryOfUsView(generic.DetailView):
+#    template_name = "stronaK/historiaKujawji.html"
+def response_story_of_Kujawja(request):
+    return render(request, 'stronaK/historiaKujawji.html')
 
 
-class StoryOfCorporationsView(generic.DetailView):
-    template_name = 'stronaK/historiaKorporacji.html'
+# class StoryOfCorporationsView(generic.DetailView):
+#   template_name = 'stronaK/historiaKorporacji.html'
+def response_story_of_corporations(request):
+    return render(request, 'stronaK/historiaKorporacji.html')
 
 
-class PhotoView(generic.DetailView):
-    template_name = "stronaK/galeria.html"
+# class PhotoView(generic.DetailView):
+#    template_name = "stronaK/galeria.html"
+def response_galeria(request):
+    return render(request, 'stronaK/galeria.html')
 
 
-class OurTraditionView(generic.DetailView):
-    template_name = "stronaK/zwyczajeKujawickie.html"
+# class OurTraditionView(generic.DetailView):
+#      template_name = "stronaK/zwyczajeKujawickie.html"
+def response_our_traditions(request):
+    return render(request, 'stronaK/zwyczajeKujawickie.html')
+
+
+
