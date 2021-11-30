@@ -99,6 +99,9 @@
                   {% if news.hidden == False %}
                       <h4>{{ news.title }}</h4>
                       <h6>{{ news.date }}</h6>
+                      {% if news.picture %}
+                          {{ news.picture }}
+                      {% endif %}
                       <h5>{{ news.text }}</h5>
                       <h5>{{ news.author_id }}</h5>
                   {% endif %}
