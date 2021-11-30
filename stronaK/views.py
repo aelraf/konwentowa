@@ -19,6 +19,9 @@ class IndexView(generic.ListView):
 
         return get_list_or_404(News)
 
+    def post(self, request):
+        return render(request, self.template_name)
+
 
 class ListOfSongView(generic.ListView):
     template_name = "stronaK/spiewnik.html"
@@ -29,6 +32,11 @@ class ListOfSongView(generic.ListView):
         """Zwraca wszystkie piosenki"""
         return get_list_or_404(Song)
 
+    def post(self, request):
+        """dodawanie, edycja, usuwanie lub wyszukiwanie piosenek"""
+
+        return render(request, self.template_name)
+
 
 class ListOfOldView(generic.ListView):
     template_name = "stronaK/zmarli.html"
@@ -38,6 +46,9 @@ class ListOfOldView(generic.ListView):
     def get_queryset(self):
         """ Zwraca listę znanych starych Filistrów """
         return get_list_or_404(OldKnight)
+
+    def post(self, request):
+        return render(request, self.template_name)
 
 
 def response_story_of_Kujawja(request):
