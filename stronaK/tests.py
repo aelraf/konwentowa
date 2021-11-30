@@ -90,3 +90,22 @@ class SongModelTests(TestCase):
         response = self.client.get(reverse('stronaK:spiewnik'))
         print("test_spiewnik: {}".format(response))
         self.assertEqual(response.status_code, 200)
+
+
+class ClassicalViewsTests(TestCase):
+    def test_response_story_of_Kujawja(self):
+        response = self.client.get(reverse('stronaK:historiaKujawji'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_response_story_of_corporations(self):
+        response = self.client.get(reverse('stronaK:historiaKorporacji'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_response_galeria(self):
+        response = self.client.get(reverse('stronaK:galeria'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_response_our_traditions(self):
+        response = self.client.get(reverse('stronaK:zwyczajeKujawickie'))
+        self.assertEqual(response.status_code, 200)
+
