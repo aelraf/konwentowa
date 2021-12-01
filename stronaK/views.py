@@ -34,6 +34,16 @@ class ListOfSongView(generic.ListView):
 
     def post(self, request):
         """dodawanie, edycja, usuwanie lub wyszukiwanie piosenek"""
+        if request.method == "POST":
+            print("ListOfSongView - post")
+            if request.POST.get('operation') == "delete":
+                id = request.POST.get('id')
+                print("usuniecie piosenki o ID: {}".format(id))
+            if request.POST.get('operation') == "add":
+                print()
+            if request.POST.get('operation') == "edit":
+                id = request.POST.get('id')
+                print("edycja piosenki o ID: {}".format(id))
 
         return render(request, self.template_name)
 
