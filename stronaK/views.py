@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # RafKac
 
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import Http404
 # from django.http import HttpResponse
 from django.views import generic
@@ -39,11 +39,17 @@ class ListOfSongView(generic.ListView):
             if request.POST.get('operation') == "delete":
                 id = request.POST.get('id')
                 print("usuniecie piosenki o ID: {}".format(id))
+                deleted = get_object_or_404(Song, pk=id)
+                print("piosenka do usunięcia: id: {}, tytuł: {}".format(id, deleted))
+                # deleted.delete()
+
             if request.POST.get('operation') == "add":
-                print()
+                print("dodawanie piosenki ")
+                return render(request, 'stronaK/dodawanie_piosenki.html')
             if request.POST.get('operation') == "edit":
                 id = request.POST.get('id')
                 print("edycja piosenki o ID: {}".format(id))
+                return render(request, 'stronaK/edycja_piosenki.html')
 
         return render(request, self.template_name)
 
