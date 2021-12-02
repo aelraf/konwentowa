@@ -40,7 +40,7 @@ def create_song():
     )
 
 
-def create_song_from_data(title, text, author, date=None, comments=None, hidden=None):
+def create_song_from_data(title, text, author, date=None, comments=None, hidden=False):
     return Song.objects.create(
         title=title,
         text=text,
@@ -105,10 +105,12 @@ class SongModelTests(TestCase):
     def test_spiewnik_post(self):
         create_song()
         create_song_from_data("Druga piosenka", "dzien dobry, przyjaciele, dzisiaj...", "Jan Kasprowicz")
-        response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'delete', 'pk': 2})
+        response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'delete', 'id': 1})
         self.assertEqual(response.status_code, 200)
-        # list_of_song = Song.objects.all()
-        # self.assertQuerysetEqual(response.context[])
+        response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'edit', 'id': 2})
+        self.assertEqual(response.status_code, 200)
+        response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'add'})
+        self.assertEqual(response.status_code, 200)
 
 
 class ClassicalViewsTests(TestCase):
