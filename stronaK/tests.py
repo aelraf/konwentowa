@@ -40,6 +40,17 @@ def create_song():
     )
 
 
+def create_song_from_data(title, text, author, date=None, comments=None, hidden=None):
+    return Song.objects.create(
+        title=title,
+        text=text,
+        author=author,
+        date=date,
+        comments=comments,
+        hidden=hidden
+    )
+
+
 class NewsModelTests(TestCase):
     def test_index_get_queryset(self):
         create_news()
@@ -91,6 +102,14 @@ class SongModelTests(TestCase):
         print("test_spiewnik: {}".format(response))
         self.assertEqual(response.status_code, 200)
 
+    def test_spiewnik_post(self):
+        create_song()
+        create_song_from_data("Druga piosenka", "dzien dobry, przyjaciele, dzisiaj...", "Jan Kasprowicz")
+        response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'delete', 'pk': 2})
+        self.assertEqual(response.status_code, 200)
+        # list_of_song = Song.objects.all()
+        # self.assertQuerysetEqual(response.context[])
+
 
 class ClassicalViewsTests(TestCase):
     def test_response_story_of_Kujawja(self):
@@ -108,4 +127,3 @@ class ClassicalViewsTests(TestCase):
     def test_response_our_traditions(self):
         response = self.client.get(reverse('stronaK:zwyczajeKujawickie'))
         self.assertEqual(response.status_code, 200)
-
