@@ -12,4 +12,5 @@ urlpatterns = [
     path('historiaKujawji', views.response_story_of_Kujawja, name='historiaKujawji'),
     path('zwyczajeKujawickie', views.response_our_traditions, name="zwyczajeKujawickie"),
     path('galeria', views.response_galeria, name="galeria"),
+    path('dodawanie_piosenek', views.add_new_song, name="dodawanie_piosenek"),
 ]

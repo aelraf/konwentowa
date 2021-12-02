@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # RafKac
+import datetime
 
+from django.contrib import messages
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import Http404
 # from django.http import HttpResponse
@@ -95,6 +98,44 @@ def response_galeria(request):
 
 def response_our_traditions(request):
     return render(request, 'stronaK/zwyczajeKujawickie.html')
+
+
+def add_new_song(request):
+    if request.method == 'POST':
+        print('add_new_song - POST')
+        print(datetime.datetime.now())
+
+        try:
+            title = request.POST.get('title')
+            author = request.POST.get('author')
+            text = request.POST.get('text')
+            date = request.POST.get('date')
+            comments = request.POST.get('comments')
+            hidden = request.POST.get('hidden')
+
+            new_song = Song(
+                title=title,
+                author=author,
+                text=text,
+                date=date,
+                comments=comments,
+                hidden=hidden
+            )
+            new_song.save()
+
+        except ValueError:
+            print('add_new_song - ValueError')
+            messages.error(request, "dodawanie piosenek - ValueError")
+        except ValidationError:
+            print('add_new_song - ValidationError')
+            messages.error(request, "dodawanie piosenek - ValidationError")
+        else:
+            messages.success(request, "dodawanie piosenek - sukces!")
+
+        return render(request, 'stronaK/dodawanie_piosenki.html')
+
+    print("dodawanie piosenki - GET: {}".format(datetime.datetime.now()))
+    return render(request, 'stronaK/dodawanie_piosenki.html')
 
 
 
