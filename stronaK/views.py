@@ -5,7 +5,9 @@ from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import Http404
 # from django.http import HttpResponse
 from django.views import generic
+from django.views.generic.edit import FormView
 
+from stronaK.forms import ContactForm
 from stronaK.models import News, Song, OldKnight
 
 
@@ -65,6 +67,18 @@ class ListOfOldView(generic.ListView):
 
     def post(self, request):
         return render(request, self.template_name)
+
+
+class ContactFormView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        # this method is called when valid data has been POSTed
+        # it should return an HttpResponse
+        form.send_email()
+        return super().form_valid(form)
 
 
 def response_story_of_Kujawja(request):
