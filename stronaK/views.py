@@ -155,9 +155,22 @@ def edit_song(request):
                 title=title,
                 author=author,
                 text=text,
-            )   
+                date=date,
+                comments=comments,
+                hidden=hidden,
+            )
+            edited_song.save()
+   
         except ValueError:
             print('edit_song - ValueError')
-        
+            messages.error(request, "edycja piosenek - ValueError")
+        except ValidationError:
+            print('edit_song - ValidationError')
+            messages.error(request, "edycja piosenek - ValidationError")
+        else:
+            messages.success(request, 'stronaK/edycja_piosenki.html')
+    
+    print('edycja piosenki - GET: {}'.format(datetime.datetime.now())) 
+    return render(request, 'stronaK/edycja_piosenki.html')       
 
 
