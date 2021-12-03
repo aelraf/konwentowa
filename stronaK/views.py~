@@ -138,26 +138,4 @@ def add_new_song(request):
     return render(request, 'stronaK/dodawanie_piosenki.html')
 
 
-def edit_song(request):
-    if request.method == 'POST':
-        print('edit_song - POST')
-        print(datetime.datetime.now())
-        
-        try:
-            title = request.POST.get('title')
-            author = request.POST.get('author')
-            text = request.POST.get('text')
-            date = request.POST.get('date')
-            comments = request.POST.get('comments')
-            hidden = request.POST.get('hidden')
-
-            edited_song = Song(
-                title=title,
-                author=author,
-                text=text,
-            )   
-        except ValueError:
-            print('edit_song - ValueError')
-        
-
 
