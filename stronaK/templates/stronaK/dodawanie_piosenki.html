@@ -16,7 +16,7 @@
 
     {% block content %}
     <div class="container col-sm-8">
-        <form action="{% url 'stronaK:add_new_song' %}" method="POST">
+        <form action="{% url 'stronaK:dodawanie_piosenek' %}" method="POST">
             {% csrf_token %}
             {% if song %}
                 <h3>Mamy piosenki!!!</h3>

@@ -52,63 +52,70 @@ def create_song_from_data(title, text, author, date=None, comments=None, hidden=
 
 
 class NewsModelTests(TestCase):
-    def test_index_get_queryset(self):
+    def setUp(self) -> None:
         create_news()
+
+    def test_index_get_queryset(self):
         response = self.client.get(reverse('stronaK:index'))
-        print("test_index_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
+
         last_news = News.objects.all()
         self.assertQuerysetEqual(response.context['last_news'], last_news)
 
     def test_index(self):
-        create_news()
         response = self.client.get(reverse('stronaK:index'))
-        print("test_index: {}".format(response))
         self.assertEqual(response.status_code, 200)
 
-    def test_index_no_book(self):
+    def test_index_no_news(self):
         response = self.client.get(reverse('stronaK:index'))
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
 
 
 class OldKnightModelTests(TestCase):
-    def test_zmarli_get_queryset(self):
+    def setUp(self) -> None:
         create_old_knight()
+
+    def test_zmarli_get_queryset(self):
         response = self.client.get(reverse('stronaK:zmarli'))
-        print("test_zmarli_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
+
         list_of_old = OldKnight.objects.all()
         self.assertQuerysetEqual(response.context['list_of_old'], list_of_old)
 
     def test_zmarli(self):
-        create_old_knight()
         response = self.client.get(reverse('stronaK:zmarli'))
-        print("test_zmarli: {}".format(response))
+
         self.assertEqual(response.status_code, 200)
 
 
 class SongModelTests(TestCase):
-    def test_spiewnik_get_queryset(self):
+    def setUp(self) -> None:
         create_song()
+        create_song_from_data("Druga piosenka", "dzien dobry, przyjaciele, dzisiaj...", "Jan Kasprowicz")
+
+    def test_spiewnik_get_queryset(self):
         response = self.client.get(reverse('stronaK:spiewnik'))
-        print("test_spiewnik_get_queryset: {}".format(response))
         self.assertEqual(response.status_code, 200)
+
         list_of_song = Song.objects.all()
         self.assertQuerysetEqual(response.context['list_of_song'], list_of_song)
 
     def test_spiewnik(self):
-        create_song()
         response = self.client.get(reverse('stronaK:spiewnik'))
-        print("test_spiewnik: {}".format(response))
         self.assertEqual(response.status_code, 200)
 
     def test_spiewnik_post(self):
-        create_song()
-        create_song_from_data("Druga piosenka", "dzien dobry, przyjaciele, dzisiaj...", "Jan Kasprowicz")
+        songs = Song.objects.all()
         response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'delete', 'id': 1})
         self.assertEqual(response.status_code, 200)
+
+        song_after_delete = Song.objects.all().count()
+
+        self.assertEqual(song_after_delete, songs.count())
+
         response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'edit', 'id': 2})
         self.assertEqual(response.status_code, 200)
+
         response = self.client.post(reverse('stronaK:spiewnik'), {'operation': 'add'})
         self.assertEqual(response.status_code, 200)
 
