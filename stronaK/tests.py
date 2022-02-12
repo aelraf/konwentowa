@@ -5,6 +5,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
+from rest_framework import status
+
 from .models import News, OldKnight, Song
 
 
@@ -55,20 +57,20 @@ class NewsModelTests(TestCase):
     def setUp(self) -> None:
         create_news()
 
+    def test_index(self):
+        response = self.client.get(reverse('stronaK:index'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_index_get_queryset(self):
         response = self.client.get(reverse('stronaK:index'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         last_news = News.objects.all()
         self.assertQuerysetEqual(response.context['last_news'], last_news)
 
-    def test_index(self):
-        response = self.client.get(reverse('stronaK:index'))
-        self.assertEqual(response.status_code, 200)
-
     def test_index_no_news(self):
         response = self.client.get(reverse('stronaK:index'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
 class OldKnightModelTests(TestCase):

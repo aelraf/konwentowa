@@ -18,14 +18,15 @@ class IndexView(generic.ListView):
     template_name = 'stronaK/index.html'
     context_object_name = 'last_news'
     model = News
+    queryset = News.objects.all()
 
-    def get_queryset(self):
-        """Zwraca najnowsze aktualności"""
-
-        return get_list_or_404(News)
-
-    def post(self, request):
-        return render(request, self.template_name)
+    # def get_queryset(self):
+    #     """Zwraca najnowsze aktualności"""
+    #
+    #     return get_list_or_404(News)
+    #
+    # def post(self, request):
+    #     return render(request, self.template_name)
 
 
 class ListOfSongView(generic.ListView):
