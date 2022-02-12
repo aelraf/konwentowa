@@ -64,13 +64,14 @@ class ListOfOldView(generic.ListView):
     template_name = "stronaK/zmarli.html"
     context_object_name = 'list_of_old'
     model = OldKnight
+    queryset = OldKnight.objects.all()
 
-    def get_queryset(self):
-        """ Zwraca listę znanych starych Filistrów """
-        return get_list_or_404(OldKnight)
-
-    def post(self, request):
-        return render(request, self.template_name)
+    # def get_queryset(self):
+    #     """ Zwraca listę znanych starych Filistrów """
+    #     return get_list_or_404(OldKnight)
+    #
+    # def post(self, request):
+    #     return render(request, self.template_name)
 
 
 class ContactFormView(FormView):
