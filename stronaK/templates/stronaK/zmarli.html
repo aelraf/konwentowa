@@ -5,29 +5,29 @@ Zmarli Kujawici
 {% endblock %}
 
 {% block content %}
-            <div class="col-sm-8">
-                <form>
-                    {% csrf_token %}
-                    {% if list_of_old %}
-                        {% for old in list_of_old %}
-                            {{ old.name }}
-                            {{ old.last_name }}
-                            {% if old.date_birth %}
-                                {{ old.date_birth }}
-                            {% endif %}
-                            {% if old.date_death %}
-                                {{ old.date_death }}
-                            {% endif %}
-                            {% if old.comments %}
-                               {{ old.comments }}
-                            {% endif %}
-                            <button>Edytuj</button>
-                            <button>Usuń</button>
-                            <br>
-                        {% endfor %}
-                    {% else %}
-                        <p> Nie ma przedwojennych członków.</p>
+    <div class="col-sm-8">
+        <form>
+            {% csrf_token %}
+            {% if list_of_old %}
+                {% for old in list_of_old %}
+                    {{ old.name }}
+                    {{ old.last_name }}
+                    {% if old.date_birth %}
+                        {{ old.date_birth }}
                     {% endif %}
-                </form>
-            </div>
+                    {% if old.date_death %}
+                        {{ old.date_death }}
+                    {% endif %}
+                    {% if old.comments %}
+                        {{ old.comments }}
+                    {% endif %}
+                    <button>Edytuj</button>
+                    <button>Usuń</button>
+                    <br>
+                {% endfor %}
+            {% else %}
+                <p> Nie ma przedwojennych członków.</p>
+            {% endif %}
+        </form>
+    </div>
 {% endblock %}
