@@ -1,17 +1,10 @@
-{% extends 'stronaK\base.html' %}
+{% extends 'stronaK/base.html' %}
 
     {% block title %}
         Dodawanie piosenki
     {% endblock %}
 
     {% block image %}
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message|capfirst }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
     {% endblock %}
 
     {% block content %}
