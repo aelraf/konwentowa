@@ -5,3 +5,18 @@ li a {
 body {
     background: white url('images/background.jpg') no-repeat;
 }
+
+body {
+  line-height: 1.6;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--color-light-gray);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+.header__user {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
