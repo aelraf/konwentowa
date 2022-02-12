@@ -22,7 +22,7 @@ class Song(models.Model):
     title = models.TextField(null=False)
     text = models.TextField(null=False)
     author = models.TextField(null=True, blank=True)
-    date = models.TextField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
     hidden = models.BooleanField(null=False, default=True)
 

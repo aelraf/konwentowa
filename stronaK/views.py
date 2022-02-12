@@ -33,6 +33,7 @@ class ListOfSongView(generic.ListView):
     template_name = "stronaK/spiewnik.html"
     context_object_name = 'list_of_song'
     model = Song
+    queryset = Song.objects.all()
 
     def get_queryset(self):
         """Zwraca wszystkie piosenki"""
@@ -66,12 +67,12 @@ class ListOfOldView(generic.ListView):
     model = OldKnight
     queryset = OldKnight.objects.all()
 
-    # def get_queryset(self):
-    #     """ Zwraca listę znanych starych Filistrów """
-    #     return get_list_or_404(OldKnight)
-    #
-    # def post(self, request):
-    #     return render(request, self.template_name)
+    def get_queryset(self):
+        """ Zwraca listę znanych starych Filistrów """
+        return get_list_or_404(OldKnight)
+
+    def post(self, request):
+        return render(request, self.template_name)
 
 
 class ContactFormView(FormView):
@@ -176,3 +177,6 @@ def edit_song(request):
     return render(request, 'stronaK/edycja_piosenki.html')       
 
 
+def login_page(request):
+    context = {}
+    return render(request, 'stronaK/login.html', context)

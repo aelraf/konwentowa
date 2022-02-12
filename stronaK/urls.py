@@ -13,4 +13,5 @@ urlpatterns = [
     path('zwyczajeKujawickie', views.response_our_traditions, name="zwyczajeKujawickie"),
     path('galeria', views.response_galeria, name="galeria"),
     path('dodawanie_piosenek', views.add_new_song, name="dodawanie_piosenek"),
+    path('login', views.login_page, name='login'),
 ]

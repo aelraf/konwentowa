@@ -16,11 +16,12 @@ Logowanie
                 <form method="POST" action="">
                     {% csrf_token %}
                     <label>Nazwa użytkownika: </label>
-                    <input type="text" value="username" placeholder="Podaj login" />
+                    <input type="text" value="Użytkownik" placeholder="Podaj login" />
+                    <br>
 
                     <label>Hasło: </label>
                     <input type="password" value="password" placeholder="Hasło" />
-
+                    <br>
                     <input type="submit" value="Zaloguj" />
                 </form>
             </div>
