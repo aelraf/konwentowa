@@ -1,0 +1,29 @@
+{% extends 'stronaK/base.html' %}
+
+{% block title %}
+Logowanie
+{% endblock %}
+
+{% block content %}
+    <main class="auth layout">
+        <div class="container">
+            <div class="layout__box">
+                <div class="layout__boxHeader">
+                    <div class="layout__boxTitle">
+                        <h3>Login</h3>
+                    </div>
+                </div>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <label>Nazwa użytkownika: </label>
+                    <input type="text" value="username" placeholder="Podaj login" />
+
+                    <label>Hasło: </label>
+                    <input type="password" value="password" placeholder="Hasło" />
+
+                    <input type="submit" value="Zaloguj" />
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
