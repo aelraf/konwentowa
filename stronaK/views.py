@@ -48,7 +48,7 @@ class ListOfSongView(generic.ListView):
                 print("usuniecie piosenki o ID: {}".format(id))
                 deleted = get_object_or_404(Song, pk=id)
                 print("piosenka do usunięcia: id: {}, tytuł: {}".format(id, deleted))
-                # deleted.delete()
+                deleted.delete()
 
             if request.POST.get('operation') == "add":
                 print("dodawanie piosenki ")
@@ -85,6 +85,10 @@ class ContactFormView(FormView):
         # it should return an HttpResponse
         form.send_email()
         return super().form_valid(form)
+
+
+class KujawjaStoryView(generic.TemplateView):
+    template_name = 'stronaK/historiaKujawji.html'
 
 
 def response_story_of_Kujawja(request):
