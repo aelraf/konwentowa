@@ -29,7 +29,9 @@
             </ul>
         </div>
         {% if request.user.is_authenticated %}
-
+            <a href="{% url 'stronaK:login' %}">
+                <p>Wyloguj</p>
+            </a>
         {% else %}
             <a href="{% url 'stronaK:login' %}">
                 <p>Zaloguj</p>
